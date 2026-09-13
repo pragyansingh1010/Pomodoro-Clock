@@ -267,7 +267,85 @@
         });
 
 
-        
+        breakMinus.addEventListener("click", function () {
+            if (breakTime > 0) {
+                breakTime--;
+                updateSettings();
+
+                if (!running && !isSession) {
+                    currentTime = breakTime * 60;
+                    showTime();
+                }
+            }
+        });
+
+
+        startBtn.addEventListener("click", function () {
+
+            if (running) {
+                return;
+            }
+
+            running = true;
+            startBtn.textContent = "Pause";
+
+            updateButtons();
+
+            interval = setInterval(function () {
+
+                if (currentTime > 0) {
+                    currentTime--;
+                    showTime();
+                }
+
+                else {
+
+                    if (isSession) {
+                        isSession = false;
+                        title.textContent = "Break!";
+                        currentTime = breakTime * 60;
+                        timer.style.color = "#e86645";
+                    }
+
+                    else {
+                        isSession = true;
+                        title.textContent = "Session";
+                        currentTime = sessionTime * 60;
+                        timer.style.color = "#00a5b5";
+                    }
+
+                    showTime();
+                }
+
+            }, 1000);
+        });
+
+
+        resetBtn.addEventListener("click", function () {
+
+            clearInterval(interval);
+
+            running = false;
+            isSession = true;
+
+            sessionTime = 20;
+            breakTime = 5;
+
+            currentTime = sessionTime * 60;
+
+            title.textContent = "Session";
+            timer.style.color = "#00a5b5";
+            startBtn.textContent = "Start";
+
+            updateSettings();
+            updateButtons();
+            showTime();
+        });
+
+
+        showTime();
+        updateSettings();
+        updateButtons();
     </script>
 
 
