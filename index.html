@@ -5,7 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Clock</title>
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, #eaa267, #f0c283);
+        }
+
+        .container {
+            width: 220px;
+            height: 460px;
+            background: rgba(55, 43, 34, 0.94);
+            color: white;
+            text-align: center;
+        }
+
+        /* Upper part */
+        .timer-section {
+            height: 190px;
+            background: #eee;
+            margin: 0 25px;
+            border-right: 12px solid #00a5b5;
+            border-bottom: 12px solid #00a5b5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #timer {
+            font-size: 32px;
+            color: #00a5b5;
+            font-family: monospace;
+        }
+
+        /* Bottom part */
+        .control-section {
+            padding: 22px 12px 0;
+        }
+
+        
+    </style>
 </head>
 
 <body>
