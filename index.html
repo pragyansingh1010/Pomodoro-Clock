@@ -182,6 +182,93 @@
         </div>
     </div>
 
+    <script>
+        let sessionTime = 20;
+        let breakTime = 5;
+
+        let currentTime = sessionTime * 60;
+        let running = false;
+        let isSession = true;
+        let interval;
+
+        const timer = document.getElementById("timer");
+        const title = document.getElementById("title");
+
+        const sessionValue = document.getElementById("sessionValue");
+        const breakValue = document.getElementById("breakValue");
+
+        const sessionMinus = document.getElementById("sessionMinus");
+        const sessionPlus = document.getElementById("sessionPlus");
+
+        const breakMinus = document.getElementById("breakMinus");
+        const breakPlus = document.getElementById("breakPlus");
+
+        const startBtn = document.getElementById("startBtn");
+        const resetBtn = document.getElementById("resetBtn");
+
+
+        function showTime() {
+            let minutes = Math.floor(currentTime / 60);
+            let seconds = currentTime % 60;
+
+            minutes = String(minutes).padStart(2, "0");
+            seconds = String(seconds).padStart(2, "0");
+
+            timer.textContent = minutes + ":" + seconds;
+        }
+
+
+        function updateButtons() {
+            sessionMinus.disabled = running;
+            sessionPlus.disabled = running;
+            breakMinus.disabled = running;
+            breakPlus.disabled = running;
+        }
+
+
+        function updateSettings() {
+            sessionValue.textContent = sessionTime + " min";
+            breakValue.textContent = breakTime + " min";
+        }
+
+
+        sessionPlus.addEventListener("click", function () {
+            sessionTime++;
+            updateSettings();
+
+            if (!running && isSession) {
+                currentTime = sessionTime * 60;
+                showTime();
+            }
+        });
+
+
+        sessionMinus.addEventListener("click", function () {
+            if (sessionTime > 0) {
+                sessionTime--;
+                updateSettings();
+
+                if (!running && isSession) {
+                    currentTime = sessionTime * 60;
+                    showTime();
+                }
+            }
+        });
+
+
+        breakPlus.addEventListener("click", function () {
+            breakTime++;
+            updateSettings();
+
+            if (!running && !isSession) {
+                currentTime = breakTime * 60;
+                showTime();
+            }
+        });
+
+
+        
+    </script>
 
 
 </body>
